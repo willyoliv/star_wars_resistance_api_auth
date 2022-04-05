@@ -29,8 +29,6 @@ public class RebelServiceImp implements RebelService {
 
     private final ReportRepository reportRepository;
 
-    private final int inventorySize = ItemInventory.values().length;
-
     Logger logger = LoggerFactory.getLogger(RebelServiceImp.class);
 
     @Value("${maximumNumberOfReport}")

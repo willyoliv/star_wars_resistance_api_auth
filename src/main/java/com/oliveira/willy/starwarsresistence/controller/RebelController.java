@@ -21,38 +21,16 @@ import java.util.stream.Collectors;
 public class RebelController {
     private final RebelService rebelService;
 
-    private final RebelMapper rebelMapper;
-
-    private final RebelResponseDtoMapper rebelResponseDtoMapper;
-
     private final LocationMapper locationMapper;
 
     private final LocationResponseDtoMapper locationResponseDtoMapper;
 
     private final ItemMapper itemMapper;
 
-    @GetMapping
-    private ResponseEntity<List<RebelResponseDto>> findAll() {
-        List<Rebel> rebels = rebelService.findAllRebels();
-        return new ResponseEntity<>(rebels.stream().map(rebelResponseDtoMapper::rebelToRebelResponseDto).collect(Collectors.toList()), HttpStatus.OK);
-    }
-
-    @GetMapping(path = "/{rebelId}")
-    private ResponseEntity<RebelResponseDto> findRebelById(@PathVariable("rebelId") Long rebelId) {
-        RebelResponseDto rebelResponseDto = rebelResponseDtoMapper.rebelToRebelResponseDto(rebelService.findRebelById(rebelId));
-        return new ResponseEntity<>(rebelResponseDto, HttpStatus.OK);
-    }
-
-    @PostMapping
-    private ResponseEntity<RebelResponseDto> saveRebel(@Valid @RequestBody RebelCreateDto rebelCreateDto) {
-        Rebel rebel = rebelMapper.rebelDTOToRebel(rebelCreateDto);
-        return new ResponseEntity<>(rebelResponseDtoMapper.rebelToRebelResponseDto(rebelService.saveRebel(rebel)), HttpStatus.CREATED);
-    }
-
     @PutMapping(path = "/{rebelId}/update-location")
     private ResponseEntity<LocationResponseDto> updateRebelLocation(@PathVariable("rebelId") Long rebelId,
                                                                @Valid @RequestBody LocationDto locationDto) {
-        Location location = rebelService.updateRebelLocation(rebelId, locationMapper.locationDTOToLocation(locationDto));
+        Location location = rebelService.updateRebelLocation(locationMapper.locationDTOToLocation(locationDto), rebelId);
         LocationResponseDto locationResponseDto = locationResponseDtoMapper.locationToLocationResponseDto(location);
         return new ResponseEntity<>(locationResponseDto, HttpStatus.OK);
     }

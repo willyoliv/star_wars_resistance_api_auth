@@ -2,6 +2,7 @@ package com.oliveira.willy.starwarsresistence.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.oliveira.willy.starwarsresistence.model.enums.Genre;
+import com.oliveira.willy.starwarsresistence.model.enums.Roles;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,6 +39,9 @@ public class Rebel {
     @OneToMany(mappedBy = "accused",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Report> report;
+
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
     private boolean isTraitor;
 

@@ -26,14 +26,15 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImp implements AdminService {
+public class AdminServiceImpl implements AdminService {
+
     private final RebelRepository rebelRepository;
 
     private final LocationRepository locationRepository;
 
     private final int inventorySize = ItemInventory.values().length;
 
-    Logger logger = LoggerFactory.getLogger(AdminServiceImp.class);
+    Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     @Transactional
     @Override

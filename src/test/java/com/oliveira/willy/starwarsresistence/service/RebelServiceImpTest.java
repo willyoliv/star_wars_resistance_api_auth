@@ -136,7 +136,6 @@ class RebelServiceImpTest {
                 .galaxyName("New Location")
                 .latitude(54321L)
                 .longitude(12345L)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         Mockito.when(this.rebelRepository.findById(rebel.getId())).thenReturn(Optional.of(rebel));
@@ -196,7 +195,7 @@ class RebelServiceImpTest {
     @DisplayName("Trade throw invalid trade exception when the rebel tries to trade with himself")
     void trade_ThrowInvalidTradeException_WhenTheRebelTriesToTradeWithHimself() {
         Rebel rebel = createRebel(1l);
-        
+
         Assertions.assertThatExceptionOfType(InvalidTradeException.class)
                 .isThrownBy(() -> this.rebelService.trade(rebel, rebel, rebel.getInventory().getItems(), rebel.getInventory().getItems()))
                 .withMessageContaining("The rebel cannot trade with himself.");
@@ -304,7 +303,6 @@ class RebelServiceImpTest {
                         .galaxyName("Test")
                         .latitude(123123L)
                         .longitude(123123L)
-                        .createdAt(LocalDateTime.now())
                         .build())
                 .inventory(Inventory.builder()
                         .id(1L)
@@ -343,9 +341,3 @@ class RebelServiceImpTest {
     }
 
 }
-
-
-
-
-
-

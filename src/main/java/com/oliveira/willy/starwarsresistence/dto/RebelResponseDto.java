@@ -1,6 +1,7 @@
 package com.oliveira.willy.starwarsresistence.dto;
 
 import com.oliveira.willy.starwarsresistence.model.enums.Genre;
+import com.oliveira.willy.starwarsresistence.model.enums.Roles;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,8 @@ public class RebelResponseDto {
     private InventoryResponseDto inventory;
 
     private List<ReportResponseDto> report;
+
+    private Roles role;
 
     private boolean traitor;
 }

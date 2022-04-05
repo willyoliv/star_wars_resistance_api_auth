@@ -1,2 +1,6 @@
-package com.oliveira.willy.starwarsresistence.model.enums;public class Roles {
+package com.oliveira.willy.starwarsresistence.model.enums;
+
+public enum Roles {
+    ADMIN,
+    REBEL,
 }

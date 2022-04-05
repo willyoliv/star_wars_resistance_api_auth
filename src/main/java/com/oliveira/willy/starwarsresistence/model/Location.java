@@ -1,7 +1,10 @@
 package com.oliveira.willy.starwarsresistence.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.oliveira.willy.starwarsresistence.model.enums.Roles;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,8 +30,7 @@ public class Location {
     @JsonBackReference
     private Rebel rebel;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
+    @Enumerated(EnumType.STRING)
+    private Roles lastUpdatedUserRole = Roles.ADMIN;
 
 }

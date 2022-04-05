@@ -1,6 +1,7 @@
 package com.oliveira.willy.starwarsresistence.dto;
 
 import com.oliveira.willy.starwarsresistence.model.enums.Genre;
+import com.oliveira.willy.starwarsresistence.model.enums.Roles;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,4 +28,7 @@ public class RebelCreateDto {
     @NotNull(message = "The inventory field cannot be null")
     @Valid
     private InventoryDto inventory;
+
+    @NotNull(message = "The role field cannot be null")
+    private Roles role;
 }
