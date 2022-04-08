@@ -21,10 +21,19 @@ public class Rebel {
     private Long id;
 
     private String name;
+
     private int age;
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+
+    @Column(unique = true)
+    private String username;
+
+    private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
@@ -39,9 +48,6 @@ public class Rebel {
     @OneToMany(mappedBy = "accused",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Report> report;
-
-    @Enumerated(EnumType.STRING)
-    private Roles role;
 
     private boolean isTraitor;
 

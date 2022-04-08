@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RebelRepository extends JpaRepository<Rebel, Long> {
+    Rebel findByUsername(String username);
+
 }

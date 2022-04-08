@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,6 +33,8 @@ public class AdminServiceImpl implements AdminService {
 
     private final LocationRepository locationRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     private final int inventorySize = ItemInventory.values().length;
 
     Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
@@ -46,6 +49,7 @@ public class AdminServiceImpl implements AdminService {
             throw new DuplicateItemsInventoryException("There are duplicate items in the inventory");
         }
         rebel.getInventory().setInventoryToItem();
+        rebel.setPassword(passwordEncoder.encode(rebel.getPassword()));
         return rebelRepository.save(rebel);
     }
 
