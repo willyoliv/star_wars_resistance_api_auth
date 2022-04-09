@@ -19,22 +19,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
+@RequiredArgsConstructor
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final JwtConfig jwtConfig;
     private final SecretKey secretKey;
-
-    @Autowired
-    public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authenticationManager, JwtConfig jwtConfig, SecretKey secretKey) {
-        this.authenticationManager = authenticationManager;
-        this.jwtConfig = jwtConfig;
-        this.secretKey = secretKey;
-    }
-
-    //    public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authenticationManager) {
-//        this.authenticationManager = authenticationManager;
-//    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -64,6 +54,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(secretKey)
                 .compact();
 
-        response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + token);
+        response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + " " + token);
     }
 }

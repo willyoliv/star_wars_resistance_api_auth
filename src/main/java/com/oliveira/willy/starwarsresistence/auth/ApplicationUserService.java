@@ -20,34 +20,28 @@ public class ApplicationUserService implements UserDetailsService {
 
     private final RebelRepository rebelRepository;
 
-    @Autowired
     public ApplicationUserService(RebelRepository rebelRepository) {
         this.rebelRepository = rebelRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Rebel rebel = rebelRepository.findByUsername(username);
-
-        if (rebel == null) {
-            log.error("User not found in the database");
-            throw new UsernameNotFoundException("User not found in the database");
-        } else {
-            log.info("User found in the database: {}", username);
-        }
+        Rebel rebel = rebelRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found in the database"));
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(new SimpleGrantedAuthority(rebel.getRole().name()));
 
-        return new ApplicationUser(
+        ApplicationUser applicationUser = new ApplicationUser(
                 username,
-                rebel.getName(),
+                rebel.getPassword(),
                 authorities,
                 true,
                 true,
                 true,
                 true
         );
+
+        return applicationUser;
     }
 }

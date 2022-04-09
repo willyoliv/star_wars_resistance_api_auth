@@ -1,11 +1,14 @@
 package com.oliveira.willy.starwarsresistence.service;
 
+import com.oliveira.willy.starwarsresistence.auth.ApplicationUser;
 import com.oliveira.willy.starwarsresistence.exception.DuplicateItemsInventoryException;
 import com.oliveira.willy.starwarsresistence.exception.InvalidReportException;
 import com.oliveira.willy.starwarsresistence.exception.InvalidTradeException;
 import com.oliveira.willy.starwarsresistence.exception.RebelNotFoundException;
-import com.oliveira.willy.starwarsresistence.model.*;
-import com.oliveira.willy.starwarsresistence.model.enums.ItemInventory;
+import com.oliveira.willy.starwarsresistence.model.Item;
+import com.oliveira.willy.starwarsresistence.model.Location;
+import com.oliveira.willy.starwarsresistence.model.Rebel;
+import com.oliveira.willy.starwarsresistence.model.Report;
 import com.oliveira.willy.starwarsresistence.model.enums.Roles;
 import com.oliveira.willy.starwarsresistence.repository.LocationRepository;
 import com.oliveira.willy.starwarsresistence.repository.RebelRepository;
@@ -14,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,16 +38,24 @@ public class RebelServiceImp implements RebelService {
     @Value("${maximumNumberOfReport}")
     private int maximumNumberOfReport;
 
-    @Transactional
+    @Override
+    public Rebel findRebel() {
+
+        String username = getCurrentApplicationUser();
+
+        return rebelRepository.findByUsername(username).orElseThrow(() -> new RebelNotFoundException("Rebel username " + username + " not found!"));
+    }
+
     @Override
     public Rebel findRebelById(Long id) {
+
         return rebelRepository.findById(id).orElseThrow(() -> new RebelNotFoundException("Rebel ID " + id + " not found!"));
     }
 
     @Transactional
     @Override
-    public Location updateRebelLocation(Location location, Long rebelId) {
-        Rebel rebel = findRebelById(rebelId);
+    public Location updateRebelLocation(Location location) {
+        Rebel rebel = findRebel();
         location.setId(rebel.getLocation().getId());
         location.setLastUpdatedUserRole(Roles.REBEL);
         return locationRepository.save(location);
@@ -105,12 +117,12 @@ public class RebelServiceImp implements RebelService {
             throw new InvalidTradeException("The sum of rebel item points are not equivalent.");
         }
 
-       addTradeItems(fromRebel.getInventory().getItems(), toRebelItems);
-       removeTradeItems(fromRebel.getInventory().getItems(), fromRebelItems);
-       addTradeItems(toRebel.getInventory().getItems(), fromRebelItems);
-       removeTradeItems(toRebel.getInventory().getItems(), toRebelItems);
+        addTradeItems(fromRebel.getInventory().getItems(), toRebelItems);
+        removeTradeItems(fromRebel.getInventory().getItems(), fromRebelItems);
+        addTradeItems(toRebel.getInventory().getItems(), fromRebelItems);
+        removeTradeItems(toRebel.getInventory().getItems(), toRebelItems);
 
-       rebelRepository.saveAll(List.of(fromRebel, toRebel));
+        rebelRepository.saveAll(List.of(fromRebel, toRebel));
     }
 
     private void checkIfRebelIsATraitor(Rebel rebel) {
@@ -150,8 +162,8 @@ public class RebelServiceImp implements RebelService {
     }
 
     private void addTradeItems(List<Item> fullInventory, List<Item> itemsToAdd) {
-        for (Item itemToTrade: itemsToAdd) {
-            for (Item itemFullInventory: fullInventory) {
+        for (Item itemToTrade : itemsToAdd) {
+            for (Item itemFullInventory : fullInventory) {
                 if (itemFullInventory.getName().equals(itemToTrade.getName())) {
                     itemFullInventory.setQuantity(itemFullInventory.getQuantity() + itemToTrade.getQuantity());
                     break;
@@ -161,13 +173,27 @@ public class RebelServiceImp implements RebelService {
     }
 
     private void removeTradeItems(List<Item> fullInventory, List<Item> itemsToRemove) {
-        for (Item itemToTrade: itemsToRemove) {
-            for (Item itemFullInventory: fullInventory) {
+        for (Item itemToTrade : itemsToRemove) {
+            for (Item itemFullInventory : fullInventory) {
                 if (itemFullInventory.getName().equals(itemToTrade.getName())) {
                     itemFullInventory.setQuantity(itemFullInventory.getQuantity() - itemToTrade.getQuantity());
                     break;
                 }
             }
         }
+    }
+
+    private String getCurrentApplicationUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String username;
+
+        if (principal instanceof ApplicationUser) {
+            username = ((ApplicationUser) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        return username;
     }
 }

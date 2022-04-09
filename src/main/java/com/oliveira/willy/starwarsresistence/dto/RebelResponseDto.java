@@ -15,6 +15,8 @@ public class RebelResponseDto {
 
     private String name;
 
+    private String username;
+
     private int age;
 
     private Genre genre;

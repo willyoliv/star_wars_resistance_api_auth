@@ -4,6 +4,7 @@ import com.oliveira.willy.starwarsresistence.auth.ApplicationUserService;
 import com.oliveira.willy.starwarsresistence.jwt.JwtConfig;
 import com.oliveira.willy.starwarsresistence.jwt.JwtTokenVerifier;
 import com.oliveira.willy.starwarsresistence.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,22 +19,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.crypto.SecretKey;
 
 @Configuration
+@RequiredArgsConstructor
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
+
     private final ApplicationUserService applicationUserService;
+
     private final SecretKey secretKey;
+
     private final JwtConfig jwtConfig;
 
-    @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
-        this.passwordEncoder = passwordEncoder;
-        this.applicationUserService = applicationUserService;
-        this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
-    }
+//    @Autowired
+//    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
+//        this.passwordEncoder = passwordEncoder;
+//        this.applicationUserService = applicationUserService;
+//        this.secretKey = secretKey;
+//        this.jwtConfig = jwtConfig;
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

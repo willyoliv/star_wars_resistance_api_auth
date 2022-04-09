@@ -5,16 +5,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class HandlerException extends ResponseEntityExceptionHandler {
@@ -63,23 +59,26 @@ public class HandlerException extends ResponseEntityExceptionHandler {
                 .build(), HttpStatus.BAD_REQUEST);
     }
 
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
-        String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
-
-        return new ResponseEntity<>(ValidationExceptionDetails.builder()
+    @ExceptionHandler(UserAlreadExistsException.class)
+    public ResponseEntity<ExceptionDetails> handlerUserAlreadExistsException(UserAlreadExistsException userAlreadExistsException) {
+        return new ResponseEntity<>(ExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
-                .title("Bad Request Exception, Invalid Fields")
-                .details("Check the field(s) erro")
-                .developerMessage(exception.getClass().getName())
-                .fields(fields)
-                .fieldsMessage(fieldsMessage)
+                .title("Username Already Exists Exception, Username unavailable")
+                .details(userAlreadExistsException.getMessage())
+                .developerMessage(userAlreadExistsException.getClass().getName())
                 .build(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ExceptionDetails> handlerInvalidTokenException(InvalidTokenException invalidTokenException) {
+        return new ResponseEntity<>(ExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.FORBIDDEN.value())
+                .title("InvalidTokenException, Token invalid")
+                .details(invalidTokenException.getMessage())
+                .developerMessage(invalidTokenException.getClass().getName())
+                .build(), HttpStatus.FORBIDDEN);
     }
 
     @Override

@@ -7,11 +7,15 @@ import com.oliveira.willy.starwarsresistence.model.Rebel;
 import com.oliveira.willy.starwarsresistence.model.enums.Genre;
 import com.oliveira.willy.starwarsresistence.model.enums.ItemInventory;
 import com.oliveira.willy.starwarsresistence.model.enums.Roles;
+import com.oliveira.willy.starwarsresistence.repository.InventoryRepository;
+import com.oliveira.willy.starwarsresistence.repository.ItemRepository;
+import com.oliveira.willy.starwarsresistence.repository.RebelRepository;
 import com.oliveira.willy.starwarsresistence.service.AdminService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,18 +29,19 @@ public class StarWarsResistenceApplication {
     }
 
     @Bean
-    CommandLineRunner run(AdminService adminService) {
+    CommandLineRunner run(RebelRepository rebelRepository, InventoryRepository inventoryRepository, ItemRepository itemRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            Rebel rebel = Rebel.builder()
+
+            Rebel rebel = rebelRepository.save(Rebel.builder()
                     .name("Rebel")
                     .age(20)
-                    .password("password")
-                    .username("willy")
+                    .password(passwordEncoder.encode("password"))
+                    .username("rebel")
                     .role(Roles.ADMIN)
                     .genre(Genre.MALE)
                     .isTraitor(false)
                     .location(Location.builder()
-                            .galaxyName("Test")
+                            .galaxyName("Galaxy name")
                             .latitude(123123L)
                             .longitude(123123L)
                             .build())
@@ -52,8 +57,12 @@ public class StarWarsResistenceApplication {
                     .createdAt(LocalDateTime.now())
                     .updatedAt(null)
                     .report(new ArrayList<>())
-                    .build();
-            adminService.saveRebel(rebel);
+                    .build());
+
+            for (Item item : rebel.getInventory().getItems()) {
+                item.setInventory(rebel.getInventory());
+                itemRepository.save(item);
+            }
         };
     }
 

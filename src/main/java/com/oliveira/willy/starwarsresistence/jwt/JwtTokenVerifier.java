@@ -1,10 +1,13 @@
 package com.oliveira.willy.starwarsresistence.jwt;
 
 import com.google.common.base.Strings;
+import com.oliveira.willy.starwarsresistence.exception.InvalidTokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,17 +26,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
+@Slf4j
 public class JwtTokenVerifier extends OncePerRequestFilter {
 
     private final SecretKey secretKey;
 
     private final JwtConfig jwtConfig;
-
-    @Autowired
-    public JwtTokenVerifier(SecretKey secretKey, JwtConfig jwtConfig) {
-        this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -46,7 +45,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
+        String token = authorizationHeader.replace(jwtConfig.getTokenPrefix() + " ", "");
         try {
 
             Jws<Claims> claimsJws = Jwts.parserBuilder()
@@ -71,7 +70,8 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         } catch (JwtException ex) {
-            throw new IllegalStateException(String.format("Token %s cannot be truest", token));
+            log.error(ex.getMessage(), ex);
+            throw new InvalidTokenException(String.format("Token %s cannot be truest", token));
         }
 
         filterChain.doFilter(request, response);

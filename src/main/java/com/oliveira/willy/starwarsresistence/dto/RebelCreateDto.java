@@ -15,6 +15,9 @@ public class RebelCreateDto {
     @NotEmpty(message = "The name field cannot be empty or null")
     private String name;
 
+    @NotNull(message = "The username field cannot be null")
+    private String username;
+
     @NotNull(message = "The age field cannot be null")
     private int age;
 
@@ -31,4 +34,7 @@ public class RebelCreateDto {
 
     @NotNull(message = "The role field cannot be null")
     private Roles role;
+
+    @NotNull(message = "The password field cannot be null")
+    private String password;
 }

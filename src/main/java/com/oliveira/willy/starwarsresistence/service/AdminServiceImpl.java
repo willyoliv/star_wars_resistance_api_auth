@@ -3,6 +3,7 @@ package com.oliveira.willy.starwarsresistence.service;
 import com.oliveira.willy.starwarsresistence.dto.AdminReport;
 import com.oliveira.willy.starwarsresistence.exception.DuplicateItemsInventoryException;
 import com.oliveira.willy.starwarsresistence.exception.RebelNotFoundException;
+import com.oliveira.willy.starwarsresistence.exception.UserAlreadExistsException;
 import com.oliveira.willy.starwarsresistence.model.Inventory;
 import com.oliveira.willy.starwarsresistence.model.Item;
 import com.oliveira.willy.starwarsresistence.model.Location;
@@ -48,6 +49,12 @@ public class AdminServiceImpl implements AdminService {
             logger.error("There are duplicate items in the inventory");
             throw new DuplicateItemsInventoryException("There are duplicate items in the inventory");
         }
+
+        if (rebelRepository.existsRebelByUsername(rebel.getUsername())) {
+            logger.error("Username already exists");
+            throw new UserAlreadExistsException("Username already exists");
+        }
+
         rebel.getInventory().setInventoryToItem();
         rebel.setPassword(passwordEncoder.encode(rebel.getPassword()));
         return rebelRepository.save(rebel);

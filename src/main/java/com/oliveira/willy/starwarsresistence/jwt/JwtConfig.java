@@ -11,13 +11,11 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "application.jwt")
 @Getter
 @Setter
+@NoArgsConstructor
 public class JwtConfig {
     private String secretKey;
     private String tokenPrefix;
     private Integer tokenExpiratinAfterDays;
-
-    public JwtConfig() {
-    }
 
     public String getAuthorizationHeader() {
         return HttpHeaders.AUTHORIZATION;

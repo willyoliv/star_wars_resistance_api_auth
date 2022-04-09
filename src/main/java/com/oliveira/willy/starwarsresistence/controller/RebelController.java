@@ -27,18 +27,24 @@ public class RebelController {
 
     private final ItemMapper itemMapper;
 
-    @PutMapping(path = "/{rebelId}/update-location")
-    private ResponseEntity<LocationResponseDto> updateRebelLocation(@PathVariable("rebelId") Long rebelId,
-                                                               @Valid @RequestBody LocationDto locationDto) {
-        Location location = rebelService.updateRebelLocation(locationMapper.locationDTOToLocation(locationDto), rebelId);
+    private final RebelResponseDtoMapper rebelResponseDtoMapper;
+
+    @GetMapping(path = "/find")
+    private ResponseEntity<RebelResponseDto> findRebelByName() {
+        RebelResponseDto rebelResponseDto = rebelResponseDtoMapper.rebelToRebelResponseDto(rebelService.findRebel());
+        return new ResponseEntity<>(rebelResponseDto, HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/update-location")
+    private ResponseEntity<LocationResponseDto> updateRebelLocation(@Valid @RequestBody LocationDto locationDto) {
+        Location location = rebelService.updateRebelLocation(locationMapper.locationDTOToLocation(locationDto));
         LocationResponseDto locationResponseDto = locationResponseDtoMapper.locationToLocationResponseDto(location);
         return new ResponseEntity<>(locationResponseDto, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/{accuserId}/report-traitor")
-    private ResponseEntity<SuccessMessage> reportRebelTraitor(@PathVariable("accuserId") Long accuserId,
-                                                              @Valid @RequestBody ReportCreateDto reportCreateDto) {
-        Rebel accuser = this.rebelService.findRebelById(accuserId);
+    @PostMapping(path = "/report-traitor")
+    private ResponseEntity<SuccessMessage> reportRebelTraitor(@Valid @RequestBody ReportCreateDto reportCreateDto) {
+        Rebel accuser = this.rebelService.findRebel();
         Rebel accused = this.rebelService.findRebelById(reportCreateDto.getAccusedId());
         rebelService.reportRebelTraitor(accuser, accused, reportCreateDto.getReason());
         return new ResponseEntity<>(new SuccessMessage("Report made successfully."), HttpStatus.OK);
@@ -46,7 +52,7 @@ public class RebelController {
 
     @PostMapping(path = "/inventory/trade")
     public ResponseEntity<SuccessMessage> tradeItemsBetweemRebels(@Valid @RequestBody TradeDto tradeDto) {
-        Rebel fromRebel = rebelService.findRebelById(tradeDto.getFromRebel().getRebelId());
+        Rebel fromRebel = rebelService.findRebel();
         Rebel toRebel = rebelService.findRebelById(tradeDto.getToRebel().getRebelId());
         List<Item> fromRebelItems = tradeDto.getFromRebel().getItems().stream()
                 .map(itemMapper::itemDTOToItem).collect(Collectors.toList());
