@@ -6,12 +6,19 @@
    * [Requisitos do projeto](#requisitos-funcionais-do-projeto)
    * [Executando o projeto](#executando-o-projeto)
    * [EndPoints](#endpoints)
+     * [Login](#login)
      * [Adicionar rebelde](#adicionar-rebelde)
-     * [Atualizar localização do rebelde](#atualizar-localização-do-rebelde)
-     * [Reportar um rebelde como traidor](#reportar-um-rebelde-como-traidor)
-     * [Negociar itens](#negociar-itens)
+     * [Atualizar localização do rebelde (ADMIN)](#atualizar-localização-do-rebelde-(ADMIN))
      * [Relatórios](#relatórios)
-     * [Adicionais](#adicionais)
+     * [Deletar rebelde](#deletar-rebelde)
+     * [Listar os rebeldes cadastrados](#listar-os-rebeldes-cadastrados)
+     * [Listar os rebeldes cadastrados(com páginação)](#listar-os-rebeldes-cadastrados(com-páginação))
+     * [Obter rebelde pelo id](#obter-rebelde-pelo-id)
+     * [Obter o inventário de rebelde pelo id](#obter-o-inventário-de-rebelde-pelo-id)
+     * [Reportar um rebelde como traidor](#reportar-um-rebelde-como-traidor)
+     * [Atualizar localização do rebelde (REBEL)](#atualizar-localização-do-rebelde-(REBEL))
+     * [Negociar itens](#negociar-itens)
+     * [Obter seus dados](#obter-seus-dados)
 <!--te-->
 
 
@@ -43,9 +50,9 @@ Desenvolver uma API REST, ao qual irá armazenar informação sobre os rebeldes,
 
 - [X] **Listar os rebeldes cadastrados(com páginação)**<br>Rebeldes com role ADMIN podem visualizar a lista páginada de rebeldes cadastrados ordenados pelo atributo `name`.
 
-- [X] **Obter rebelde pelo `Id`**<br>Acessar dados de um rebelde expecífico pelo atributo `id`.
+- [X] **Obter rebelde pelo `id`**<br>Acessar dados de um rebelde expecífico pelo atributo `id`.
 
-- [X] **Obter o inventário de rebelde pelo `Id`**<br>Acessar dados do inventário de um rebelde expecífico pelo atributo `id`.
+- [X] **Obter o inventário de rebelde pelo `id`**<br>Acessar dados do inventário de um rebelde expecífico pelo atributo `id`.
 
 ### Requisitos para rebel com Role REBEL
 - [X] **Atualizar localização do rebelde**<br>Um rebelde deve possuir a capacidade de reportar sua última localização, armazenando a nova latitude/longitude/nome (não é necessário rastrear as
@@ -215,14 +222,14 @@ Para obter a lista dos rebeldes com páginação, basta utilizar o endpoint abai
 
 Método **GET** localhost:8080/starwars-resistence/admin
 
-### Obter rebelde pelo `Id`
+### Obter rebelde pelo `id`
 Para obter um rebelde específico basta utilizar o endpoint abaixo, onde o **`id`** de um rebelde cadastrado deve ser passado.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
 Método **GET** localhost:8080/starwars-resistence/admin/rebel/find/**`id`**
 
-### Obter o inventário de rebelde pelo `Id`
+### Obter o inventário de rebelde pelo `id`
 Para obter o inventário de rebelde específico basta utilizar o endpoint abaixo, onde o **`id`** de um rebelde cadastrado deve ser passado.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
