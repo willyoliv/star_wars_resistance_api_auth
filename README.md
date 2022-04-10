@@ -8,15 +8,15 @@
    * [EndPoints](#endpoints)
      * [Login](#login)
      * [Adicionar rebelde](#adicionar-rebelde)
-     * [Atualizar localização do rebelde (ADMIN)](#atualizar-localização-do-rebelde-(ADMIN))
+     * [Atualizar localização do rebelde (ADMIN)](#atualizar-localização-do-rebeldeadmin)
      * [Relatórios](#relatórios)
      * [Deletar rebelde](#deletar-rebelde)
      * [Listar os rebeldes cadastrados](#listar-os-rebeldes-cadastrados)
-     * [Listar os rebeldes cadastrados(com páginação)](#listar-os-rebeldes-cadastrados(com-páginação))
+     * [Listar os rebeldes cadastrados(com páginação)](#listar-os-rebeldes-cadastradoscom-páginação)
      * [Obter rebelde pelo id](#obter-rebelde-pelo-id)
      * [Obter o inventário de rebelde pelo id](#obter-o-inventário-de-rebelde-pelo-id)
      * [Reportar um rebelde como traidor](#reportar-um-rebelde-como-traidor)
-     * [Atualizar localização do rebelde (REBEL)](#atualizar-localização-do-rebelde-(REBEL))
+     * [Atualizar localização do rebelde (REBEL)](#atualizar-localização-do-rebelderebel)
      * [Negociar itens](#negociar-itens)
      * [Obter seus dados](#obter-seus-dados)
 <!--te-->
@@ -166,7 +166,7 @@ Método **POST** localhost:8080/starwars-resistence/admin/rebel/save
    }
 }
 ```
-### Atualizar localização do rebelde (ADMIN)
+### Atualizar localização do rebelde(ADMIN)
 Para atualizar a localização de um rebelde é necessário informar os novos valores para galaxyName, longitude e latitude. Também deve ser passado na URL o **`id`** do rebelde.
  Abaixo são apresentados o endpoint e o exemplo de body para realizar a atualização da localização de um rebelde.
 
@@ -236,7 +236,7 @@ Para obter o inventário de rebelde específico basta utilizar o endpoint abaixo
 
 Método **GET** localhost:8080/starwars-resistence/admin/rebel/**`id`**/inventory
 
-### Atualizar localização do rebelde (REBEL)
+### Atualizar localização do rebelde(REBEL)
 Para atualizar a localização de um rebelde é necessário informar os novos valores para galaxyName, longitude e latitude. 
 O rebelde será identificado a partir das informações do token de autenticação.
 
