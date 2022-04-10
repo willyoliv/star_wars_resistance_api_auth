@@ -83,7 +83,7 @@ Desenvolver uma API REST, ao qual irá armazenar informação sobre os rebeldes,
 Abaixo são apresentados os passos necessários para que o projeto possa ser executado.
 
 ### Pré-requisitos
-O projeto foi criado utilizando o **`Gradle`** como gerenciador de dependências. Como pré-requisito principal é necessário que a versão do JAVA **`JDK 17`** esteja devidamente instalada em seu ambiente de desenvolvimento. Também será necessário utilizar alguma IDE para visualizar o código como por exemplo: Intellij (utilizada), Netbeans, Eclipse ou qualquer um editor de sua preferência. 
+O projeto foi criado utilizando o **`Gradle`** como gerenciador de dependências. Como pré-requisito principal é necessário que a versão do JAVA **`JDK 17`** esteja devidamente instalada em seu ambiente de desenvolvimento. Também será necessário utilizar alguma IDE para visualizar o código como por exemplo: Intellij (utilizada), Netbeans, Eclipse ou qualquer um editor de sua preferência. Além disso será necessário criar um banco **`Postgres`** com o nome **`starwars`** e editar as configurações no arquivo `application.properties`.
 
 ### Rodando o projeto
 ```bash
