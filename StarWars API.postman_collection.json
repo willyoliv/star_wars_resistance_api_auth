@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "f0a3cab2-f1b5-44b9-a0f0-1ee0426dd4a6",
+		"name": "StarWars API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Salvar Rebelde",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjE2NzM1LCJleHAiOjE2NDk2NDYwMDB9.3S4iRUSz5uOAkZ6wC-nLPEFbMe9YAyaAFHEEOCIDS_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Rebelde\",\r\n\t\"username\": \"rebelde\",\r\n\t\"password\": \"password\",\r\n\t\"age\": 24,\r\n\t\"genre\": \"MALE\",\r\n\t\"role\": \"REBEL\",\r\n\t\"location\": {\r\n\t\t\"galaxyName\": \"Galáxia X\",\r\n\t\t\"latitude\": 1223432423,\r\n\t\t\"longitude\": 1321243123\r\n\t},\r\n\t\"inventory\": {\r\n\t\t\"items\": [\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"WEAPON\",\r\n\t\t\t\t\"quantity\": 2\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"BULLET\",\r\n\t\t\t\t\"quantity\": 35\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"WATER\",\r\n\t\t\t\t\"quantity\": 4\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"FOOD\",\r\n\t\t\t\t\"quantity\": 10\r\n\t\t\t}\r\n\t\t]\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/rebel/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"rebel",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de rebelde (Sem páginação)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter os rebeldes com páginação",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter relatório",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter rebelde pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/rebel/find/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"rebel",
+								"find",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter inventário pelo ID do rebelde",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/rebel/1/inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"rebel",
+								"1",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar localização de um rebelde pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"galaxyName\": \"Nova galáxia\",\r\n\t\"latitude\": 50234324,\r\n\t\"longitude\": 27212431\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/rebel/1/update-location",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"rebel",
+								"1",
+								"update-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar um rebelde",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNjQ5NjEyNDY5LCJleHAiOjE2NDk2NDYwMDB9.Ccb8DHIen0CuW62VrkMsevxgtyIEqvtCgTR4yVUi1Cw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/admin/rebel/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"admin",
+								"rebel",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rebelde",
+			"item": [
+				{
+					"name": "Burcar dados do rebelde autenticado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbGRlIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJFQkVMIn1dLCJpYXQiOjE2NDk2MTM2MzYsImV4cCI6MTY0OTY0NjAwMH0.DXEQTExOm8yIRqGdYfhPXBBU-qjiLFBVzb43PD7Yo5E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/rebels/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"rebels",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar localização do rebelde autenticado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbGRlIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJFQkVMIn1dLCJpYXQiOjE2NDk2MTM2MzYsImV4cCI6MTY0OTY0NjAwMH0.DXEQTExOm8yIRqGdYfhPXBBU-qjiLFBVzb43PD7Yo5E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"galaxyName\": \"Nova galáxia\",\r\n\t\"latitude\": 50234324,\r\n\t\"longitude\": 27212431\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/rebels/update-location",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"rebels",
+								"update-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reportar traídor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbGRlIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJFQkVMIn1dLCJpYXQiOjE2NDk2MTM2MzYsImV4cCI6MTY0OTY0NjAwMH0.DXEQTExOm8yIRqGdYfhPXBBU-qjiLFBVzb43PD7Yo5E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"accusedId\": 3,\r\n\t\"reason\": \"Agindo de forma estranha.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/rebels/report-traitor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"rebels",
+								"report-traitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trocar itens",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWJlbGRlIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJFQkVMIn1dLCJpYXQiOjE2NDk2MTM2MzYsImV4cCI6MTY0OTY0NjAwMH0.DXEQTExOm8yIRqGdYfhPXBBU-qjiLFBVzb43PD7Yo5E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"fromRebel\": {\r\n\t\t\"rebelId\": 1,\r\n\t\t\"items\": [\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"WEAPON\",\r\n\t\t\t\t\"quantity\": 1\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"WATER\",\r\n\t\t\t\t\"quantity\": 1\r\n\t\t\t}\t\t\r\n\t\t]\r\n\t},\r\n\t\"toRebel\": {\r\n\t\t\"rebelId\": 3,\r\n\t\t\"items\": [\r\n\t\t\t{\r\n\t\t\t\t\"name\": \"BULLET\",\r\n\t\t\t\t\"quantity\": 2\r\n\t\t\t}\t\r\n\t\t]\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/starwars-resistence/rebels/inventory/trade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"starwars-resistence",
+								"rebels",
+								"inventory",
+								"trade"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login (Obter token)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"rebel\",\r\n\t\"password\": \"password\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/starwars-resistence/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"starwars-resistence",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

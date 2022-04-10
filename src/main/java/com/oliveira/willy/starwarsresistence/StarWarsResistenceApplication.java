@@ -7,10 +7,8 @@ import com.oliveira.willy.starwarsresistence.model.Rebel;
 import com.oliveira.willy.starwarsresistence.model.enums.Genre;
 import com.oliveira.willy.starwarsresistence.model.enums.ItemInventory;
 import com.oliveira.willy.starwarsresistence.model.enums.Roles;
-import com.oliveira.willy.starwarsresistence.repository.InventoryRepository;
 import com.oliveira.willy.starwarsresistence.repository.ItemRepository;
 import com.oliveira.willy.starwarsresistence.repository.RebelRepository;
-import com.oliveira.willy.starwarsresistence.service.AdminService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +27,7 @@ public class StarWarsResistenceApplication {
     }
 
     @Bean
-    CommandLineRunner run(RebelRepository rebelRepository, InventoryRepository inventoryRepository, ItemRepository itemRepository, PasswordEncoder passwordEncoder) {
+    CommandLineRunner run(RebelRepository rebelRepository, ItemRepository itemRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
             Rebel rebel = rebelRepository.save(Rebel.builder()

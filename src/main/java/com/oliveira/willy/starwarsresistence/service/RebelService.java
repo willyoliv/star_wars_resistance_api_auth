@@ -20,5 +20,6 @@ public interface RebelService {
     @PreAuthorize("hasAuthority('REBEL')")
     void trade(Rebel fromRebel, Rebel toRebel, List<Item> fromRebelItems, List<Item> toRebelItems);
 
+    @PreAuthorize("hasAuthority('REBEL')")
     Rebel findRebel();
 }

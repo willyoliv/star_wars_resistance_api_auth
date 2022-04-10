@@ -8,6 +8,8 @@ import com.oliveira.willy.starwarsresistence.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +42,8 @@ public class AdminController {
     }
 
     @GetMapping
-    private ResponseEntity<Page<RebelResponseDto>> findAllRebelsWithPagination(Pageable pageable) {
+    private ResponseEntity<Page<RebelResponseDto>> findAllRebelsWithPagination(@SortDefault.SortDefaults({
+            @SortDefault(sort = "name", direction = Sort.Direction.ASC)}) Pageable pageable) {
         Page<Rebel> rebels = adminService.findAllRebelsWithPagination(pageable);
         return new ResponseEntity<>(rebels.map(rebelResponseDtoMapper::rebelToRebelResponseDto), HttpStatus.OK);
     }
