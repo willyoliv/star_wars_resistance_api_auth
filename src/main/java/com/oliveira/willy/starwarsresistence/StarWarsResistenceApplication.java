@@ -42,6 +42,7 @@ public class StarWarsResistenceApplication {
                             .galaxyName("Galaxy name")
                             .latitude(123123L)
                             .longitude(123123L)
+                            .lastUpdatedUserRole(Roles.ADMIN)
                             .build())
                     .inventory(Inventory.builder()
                             .items(List.of(Item.builder().name(ItemInventory.WEAPON).quantity(1).build(),

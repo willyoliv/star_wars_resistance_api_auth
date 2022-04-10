@@ -31,6 +31,6 @@ public class Location {
     private Rebel rebel;
 
     @Enumerated(EnumType.STRING)
-    private Roles lastUpdatedUserRole = Roles.ADMIN;
+    private Roles lastUpdatedUserRole;
 
 }

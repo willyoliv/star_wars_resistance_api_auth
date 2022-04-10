@@ -56,6 +56,7 @@ public class AdminServiceImpl implements AdminService {
         }
 
         rebel.getInventory().setInventoryToItem();
+        rebel.getLocation().setLastUpdatedUserRole(Roles.ADMIN);
         rebel.setPassword(passwordEncoder.encode(rebel.getPassword()));
         return rebelRepository.save(rebel);
     }
