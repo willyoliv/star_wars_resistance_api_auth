@@ -105,9 +105,9 @@ server.port=8081
 ```
 
 ## EndPoints
-Os endpoints estão organizados seguindo a ordem dos requitidos funcionais do projeto. A documentação pode ser acessada importando o arquivo **`StarWars API.postman_collection.json`** no Postman.
+Os endpoints estão organizados seguindo a ordem dos requisidos funcionais do projeto. A documentação pode ser acessada importando o arquivo **`StarWars API.postman_collection.json`** no Postman.
 ### Login
-As requisições para esta API necessitam de autenticação, então para realizar qualquer requesição é necessário efetuar o login passando o
+As requisições para esta API necessitam de autenticação, então para realizar qualquer requisição é necessário efetuar o login passando o
 `username` e o `password`.
 
 **OBS.** Ao executar o projeto será adicionado um usuário com username **rebel** e password **password** e role **ADMIN**
