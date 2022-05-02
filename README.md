@@ -98,7 +98,7 @@ $ cd star_wars_resistence_api_auth
 $ ./gradlew bootRun
 
 ```
-**OBS.** O projeto por padrão roda em `localhost:8080`, caso a mesma esteja sendo utilizada por outro serviço é necessário alterar o arquivo `application.yml` adicionando uma nova porta seguindo o exemplo abaixo.
+**OBS.** O projeto por padrão roda em `localhost:8080`, caso a mesma esteja sendo utilizada por outro serviço é necessário alterar o arquivo `application.properties` adicionando uma nova porta seguindo o exemplo abaixo.
 
 ```
 server.port=8081
