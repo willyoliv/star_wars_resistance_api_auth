@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.dto;
+package com.oliveira.willy.starwarsresistence.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

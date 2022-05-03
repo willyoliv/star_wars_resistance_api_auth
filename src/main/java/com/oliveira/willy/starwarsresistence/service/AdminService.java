@@ -30,7 +30,7 @@ public interface AdminService {
     Page<Rebel> findAllRebelsWithPagination(Pageable pageable);
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    Inventory getRebelInventory(Long id);
+    Inventory inventory(Long id);
 
     @PreAuthorize("hasAuthority('ADMIN')")
     AdminReport report();

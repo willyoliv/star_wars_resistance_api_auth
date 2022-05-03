@@ -3,7 +3,7 @@ package com.oliveira.willy.starwarsresistence.service;
 import com.oliveira.willy.starwarsresistence.dto.AdminReport;
 import com.oliveira.willy.starwarsresistence.exception.DuplicateItemsInventoryException;
 import com.oliveira.willy.starwarsresistence.exception.RebelNotFoundException;
-import com.oliveira.willy.starwarsresistence.exception.UserAlreadExistsException;
+import com.oliveira.willy.starwarsresistence.exception.UserAlreadyExistsException;
 import com.oliveira.willy.starwarsresistence.model.Inventory;
 import com.oliveira.willy.starwarsresistence.model.Item;
 import com.oliveira.willy.starwarsresistence.model.Location;
@@ -52,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
 
         if (rebelRepository.existsRebelByUsername(rebel.getUsername())) {
             logger.error("Username already exists");
-            throw new UserAlreadExistsException("Username already exists");
+            throw new UserAlreadyExistsException("Username already exists");
         }
 
         rebel.getInventory().setInventoryToItem();
@@ -99,7 +99,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Transactional
     @Override
-    public Inventory getRebelInventory(Long id) {
+    public Inventory inventory(Long id) {
         Rebel rebel = findRebelById(id);
         return rebel.getInventory();
     }
@@ -137,19 +137,16 @@ public class AdminServiceImpl implements AdminService {
                 .map(Inventory::getItems)
                 .flatMap(List::stream).collect(Collectors.toList());
 
-        Map<ItemInventory, Double> itemInventoryMap = items.stream()
+        return items.stream()
                 .collect(Collectors.groupingBy(Item::getName, Collectors.averagingInt(Item::getQuantity)));
-
-        return itemInventoryMap;
     }
 
     private int countLostPointsBecauseOfTraitors(List<Rebel> rebels) {
-        int sum = rebels.stream().filter(Rebel::isTraitor)
+        return rebels.stream().filter(Rebel::isTraitor)
                 .map(Rebel::getInventory)
                 .map(Inventory::getItems)
                 .flatMap(List::stream).collect(Collectors.toList())
                 .stream().mapToInt(Item::getQuantity).sum();
-        return sum;
     }
 
     private int countDistinctItemsInInventory(List<Item> items) {

@@ -8,7 +8,7 @@ public enum ItemInventory {
 
     public final int value;
 
-    private ItemInventory(int value) {
+    ItemInventory(int value) {
         this.value = value;
     }
 }

@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.auth;
+package com.oliveira.willy.starwarsresistence.config.security.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

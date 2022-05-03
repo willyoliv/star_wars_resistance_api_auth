@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.security;
+package com.oliveira.willy.starwarsresistence.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

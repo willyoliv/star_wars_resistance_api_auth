@@ -59,14 +59,14 @@ public class HandlerException extends ResponseEntityExceptionHandler {
                 .build(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UserAlreadExistsException.class)
-    public ResponseEntity<ExceptionDetails> handlerUserAlreadExistsException(UserAlreadExistsException userAlreadExistsException) {
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ExceptionDetails> handlerUserAlreadyExistsException(UserAlreadyExistsException userAlreadyExistsException) {
         return new ResponseEntity<>(ExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .title("Username Already Exists Exception, Username unavailable")
-                .details(userAlreadExistsException.getMessage())
-                .developerMessage(userAlreadExistsException.getClass().getName())
+                .details(userAlreadyExistsException.getMessage())
+                .developerMessage(userAlreadyExistsException.getClass().getName())
                 .build(), HttpStatus.BAD_REQUEST);
     }
 

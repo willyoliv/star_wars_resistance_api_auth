@@ -1,10 +1,8 @@
-package com.oliveira.willy.starwarsresistence.auth;
+package com.oliveira.willy.starwarsresistence.config.security.auth;
 
 import com.oliveira.willy.starwarsresistence.model.Rebel;
 import com.oliveira.willy.starwarsresistence.repository.RebelRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

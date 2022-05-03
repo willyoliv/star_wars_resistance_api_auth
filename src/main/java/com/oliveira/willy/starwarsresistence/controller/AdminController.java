@@ -56,7 +56,7 @@ public class AdminController {
 
     @GetMapping(path = "/rebel/{rebelId}/inventory")
     private ResponseEntity<InventoryDto> getInvetoryRebel(@PathVariable("rebelId") Long rebelId) {
-        return new ResponseEntity<>(inventoryMapper.inventoryToInventoryDTO(adminService.getRebelInventory(rebelId)), HttpStatus.OK);
+        return new ResponseEntity<>(inventoryMapper.inventoryToInventoryDTO(adminService.inventory(rebelId)), HttpStatus.OK);
     }
 
     @PostMapping(path = "/rebel/save")

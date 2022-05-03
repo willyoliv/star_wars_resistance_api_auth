@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.jwt;
+package com.oliveira.willy.starwarsresistence.config.security.jwt;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;

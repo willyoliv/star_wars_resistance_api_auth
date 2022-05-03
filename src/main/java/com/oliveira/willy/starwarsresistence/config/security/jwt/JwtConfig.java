@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.jwt;
+package com.oliveira.willy.starwarsresistence.config.security.jwt;
 
 import com.google.common.net.HttpHeaders;
 import lombok.Getter;

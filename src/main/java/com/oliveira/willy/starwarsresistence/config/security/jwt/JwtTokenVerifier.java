@@ -1,4 +1,4 @@
-package com.oliveira.willy.starwarsresistence.jwt;
+package com.oliveira.willy.starwarsresistence.config.security.jwt;
 
 import com.google.common.base.Strings;
 import com.oliveira.willy.starwarsresistence.exception.InvalidTokenException;
@@ -8,7 +8,6 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -57,14 +56,14 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
             String username = body.getSubject();
 
-            var authorities = (List<Map<String, String>>) body.get("authorities");
+            var authoritiesFromUser = (List<Map<String, String>>) body.get("authorities");
 
-            Set<SimpleGrantedAuthority> simpleGrantedAuhtorities = authorities.stream().map(m -> new SimpleGrantedAuthority(m.get("authority"))).collect(Collectors.toSet());
+            Set<SimpleGrantedAuthority> authorities = authoritiesFromUser.stream().map(m -> new SimpleGrantedAuthority(m.get("authority"))).collect(Collectors.toSet());
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     username,
                     null,
-                    simpleGrantedAuhtorities
+                    authorities
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);

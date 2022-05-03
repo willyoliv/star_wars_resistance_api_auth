@@ -1,6 +1,6 @@
 package com.oliveira.willy.starwarsresistence.service;
 
-import com.oliveira.willy.starwarsresistence.auth.ApplicationUser;
+import com.oliveira.willy.starwarsresistence.config.security.auth.ApplicationUser;
 import com.oliveira.willy.starwarsresistence.exception.DuplicateItemsInventoryException;
 import com.oliveira.willy.starwarsresistence.exception.InvalidReportException;
 import com.oliveira.willy.starwarsresistence.exception.InvalidTradeException;
@@ -14,8 +14,6 @@ import com.oliveira.willy.starwarsresistence.repository.LocationRepository;
 import com.oliveira.willy.starwarsresistence.repository.RebelRepository;
 import com.oliveira.willy.starwarsresistence.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -32,8 +30,6 @@ public class RebelServiceImp implements RebelService {
     private final LocationRepository locationRepository;
 
     private final ReportRepository reportRepository;
-
-    Logger logger = LoggerFactory.getLogger(RebelServiceImp.class);
 
     @Value("${maximumNumberOfReport}")
     private int maximumNumberOfReport;
@@ -70,7 +66,7 @@ public class RebelServiceImp implements RebelService {
         }
 
         Optional<Report> accuserFound = reportRepository.findByAccusedAndAccuser(accused, accuser);
-        if (!accuserFound.isEmpty()) {
+        if (accuserFound.isPresent()) {
             throw new InvalidReportException("Report already registered. It is not possible to report this rebel again.");
         }
 
@@ -146,8 +142,8 @@ public class RebelServiceImp implements RebelService {
 
     private boolean validateQuantityOfItemsInInventory(Rebel rebel, List<Item> rebelItemsFromRequest) {
         return rebelItemsFromRequest.stream()
-                .allMatch((itemFromRequest) -> rebel.getInventory().getItems().stream()
-                        .anyMatch((rebelItem) -> {
+                .allMatch(itemFromRequest -> rebel.getInventory().getItems().stream()
+                        .anyMatch(rebelItem -> {
                             if (itemFromRequest.getName().equals(rebelItem.getName())) {
                                 return rebelItem.getQuantity() >= itemFromRequest.getQuantity();
                             }
@@ -157,7 +153,7 @@ public class RebelServiceImp implements RebelService {
 
     private int getSumOfItemPoints(List<Item> items) {
         return items.stream()
-                .mapToInt((item) -> item.getQuantity() * item.getName().value)
+                .mapToInt(item -> item.getQuantity() * item.getName().value)
                 .sum();
     }
 

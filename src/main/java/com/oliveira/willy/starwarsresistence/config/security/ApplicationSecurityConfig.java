@@ -1,11 +1,10 @@
-package com.oliveira.willy.starwarsresistence.security;
+package com.oliveira.willy.starwarsresistence.config.security;
 
-import com.oliveira.willy.starwarsresistence.auth.ApplicationUserService;
-import com.oliveira.willy.starwarsresistence.jwt.JwtConfig;
-import com.oliveira.willy.starwarsresistence.jwt.JwtTokenVerifier;
-import com.oliveira.willy.starwarsresistence.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.oliveira.willy.starwarsresistence.config.security.auth.ApplicationUserService;
+import com.oliveira.willy.starwarsresistence.config.security.jwt.JwtConfig;
+import com.oliveira.willy.starwarsresistence.config.security.jwt.JwtTokenVerifier;
+import com.oliveira.willy.starwarsresistence.config.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,14 +30,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SecretKey secretKey;
 
     private final JwtConfig jwtConfig;
-
-//    @Autowired
-//    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
-//        this.passwordEncoder = passwordEncoder;
-//        this.applicationUserService = applicationUserService;
-//        this.secretKey = secretKey;
-//        this.jwtConfig = jwtConfig;
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
