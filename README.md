@@ -107,7 +107,7 @@ server.port=8081
 ## EndPoints
 Os endpoints estão organizados seguindo a ordem dos requisidos funcionais do projeto. A documentação pode ser acessada importando o arquivo **`StarWars API.postman_collection.json`** no Postman.
 ### Login
-As requisições para esta API necessitam de autenticação, então para realizar qualquer requisição é necessário efetuar o login passando o
+As requisições para esta API necessitam de autenticação, então, para realizar qualquer requisição é necessário efetuar o login passando o
 `username` e o `password`.
 
 **OBS.** Ao executar o projeto será adicionado um usuário com username **rebel** e password **password** e role **ADMIN**
@@ -127,7 +127,7 @@ Para adicionar o rebelde é necessário informar os campos name, age, username, 
 
 **OBS.** Os campos possuem algumas validações, valores `null` e `""` não são aceitos para campos do tipo `String`. A lista de itens deve conter obrigatoriamente os 
 quatro itens `WEAPON, WATER, BULLET e FOOD` com seus respectivos valores, não podendo serem **null** ou **NEGATIVOS**. 
-Além do body deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
+Além do body, deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 Abaixo são apresentados o endpoint e o exemplo de body para realizar a adição de um novo rebelde.  
 
 Método **POST** localhost:8080/starwars-resistence/admin/rebel/save
