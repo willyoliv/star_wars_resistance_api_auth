@@ -12,7 +12,7 @@
      * [Relatórios](#relatórios)
      * [Deletar rebelde](#deletar-rebelde)
      * [Listar os rebeldes cadastrados](#listar-os-rebeldes-cadastrados)
-     * [Listar os rebeldes cadastrados(com páginação)](#listar-os-rebeldes-cadastradoscom-páginação)
+     * [Listar os rebeldes cadastrados(com paginação)](#listar-os-rebeldes-cadastradoscom-paginação)
      * [Obter rebelde pelo id](#obter-rebelde-pelo-id)
      * [Obter o inventário de rebelde pelo id](#obter-o-inventário-de-rebelde-pelo-id)
      * [Reportar um rebelde como traidor](#reportar-um-rebelde-como-traidor)
@@ -48,7 +48,7 @@ Desenvolver uma API REST, ao qual irá armazenar informação sobre os rebeldes,
 
 - [X] **Listar os rebeldes cadastrados**<br>Rebeldes com role ADMIN podem visualizar a lista de rebeldes cadastrados.
 
-- [X] **Listar os rebeldes cadastrados(com páginação)**<br>Rebeldes com role ADMIN podem visualizar a lista páginada de rebeldes cadastrados ordenados pelo atributo `name`.
+- [X] **Listar os rebeldes cadastrados(com paginação)**<br>Rebeldes com role ADMIN podem visualizar a lista paginada de rebeldes cadastrados ordenados pelo atributo `name`.
 
 - [X] **Obter rebelde pelo `id`**<br>Acessar dados de um rebelde expecífico pelo atributo `id`.
 
@@ -215,8 +215,8 @@ Para obter a lista completa dos rebeldes basta utilizar o endpoint abaixo.
 
 Método **GET** localhost:8080/starwars-resistence/admin/list
 
-### Listar os rebeldes cadastrados(com páginação)
-Para obter a lista dos rebeldes com páginação, basta utilizar o endpoint abaixo.
+### Listar os rebeldes cadastrados(com paginação)
+Para obter a lista dos rebeldes com paginação, basta utilizar o endpoint abaixo.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
