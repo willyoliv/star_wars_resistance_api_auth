@@ -23,7 +23,7 @@
 
 
 ## Sobre o projeto
-Construção de uma API REST como Projeto final do Módulo **Desenvolvimento web** do curso da Let 's Code **Santander Coders Web Full Stack**. O projeto tem como principal objetivo pôr em prática os conceitos adquiridos em aula. A API foi construída com Springboot utilizando as dependências como H2 para banco em memória, JPA para criar as tabelas e relacionamentos entre as entidades, Mapper Struct para fazer o processo de mapeamento das entidades. A API também possui alguns testes de unidade.
+Construção de uma API REST como Projeto final do Módulo **Desenvolvimento web** do curso da Let 's Code **Santander Coders Web Full Stack**. O projeto tem como principal objetivo pôr em prática os conceitos adquiridos em aula. A API foi construída com Springboot utilizando as dependências do Postgres para banco, JPA para criar as tabelas e relacionamentos entre as entidades, Mapper Struct para fazer o processo de mapeamento das entidades.
 
 *"O império continua sua luta incessante de dominar a galáxia, tentando ao máximo expandir seu território e eliminar os rebeldes. Você, como um soldado da resistência, foi designado para desenvolver um sistema
 para compartilhar recursos entre os rebeldes."*
