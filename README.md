@@ -1,4 +1,4 @@
-# Star Wars Resistance Social Network API ![badge](https://img.shields.io/github/languages/top/willyoliv/star_wars_resistence_api_auth)
+# Star Wars Resistance Social Network API ![badge](https://img.shields.io/github/languages/top/willyoliv/star_wars_resistance_api_auth)
 
 ## Tabela de conteúdos
 <!--ts-->
@@ -89,10 +89,10 @@ O projeto foi criado utilizando o **`Gradle`** como gerenciador de dependências
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/willyoliv/star_wars_resistence_api_auth.git
+$ git clone https://github.com/willyoliv/star_wars_resistance_api_auth.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd star_wars_resistence_api_auth
+$ cd star_wars_resistance_api_auth
 
 # Rode o projeto
 $ ./gradlew bootRun
@@ -113,7 +113,7 @@ As requisições para esta API necessitam de autenticação, então, para realiz
 **OBS.** Ao executar o projeto será adicionado um usuário com username **rebel** e password **password** e role **ADMIN**
 para que seja possível rodar as operações básicas. Abaixo é apresentado um exemplo de requisição para efetuar login cuja a resposta será o token de acesso.
 
-Método **POST** localhost:8080/starwars-resistence/login
+Método **POST** localhost:8080/starwars-resistance/login
 
 ```
 {
@@ -130,7 +130,7 @@ quatro itens `WEAPON, WATER, BULLET e FOOD` com seus respectivos valores, não p
 Além do body, deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 Abaixo são apresentados o endpoint e o exemplo de body para realizar a adição de um novo rebelde.  
 
-Método **POST** localhost:8080/starwars-resistence/admin/rebel/save
+Método **POST** localhost:8080/starwars-resistance/admin/rebel/save
 
 ```
 {
@@ -173,7 +173,7 @@ Para atualizar a localização de um rebelde é necessário informar os novos va
 **OBS.** O `id` deve obrigatoriamente pertencer a um rebelde existente, caso contrário a resposta para a requisição é `BAD_REQUEST`.
 Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **PUT** localhost:8080/starwars-resistence/admin/rebel/**`id`**/update-location
+Método **PUT** localhost:8080/starwars-resistance/admin/rebel/**`id`**/update-location
 ```
 {
    "galaxyName": "Nova galáxia",
@@ -187,7 +187,7 @@ Abaixo é apresentado o endpoint para obter o relatório e um exemplo de respost
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/admin/report
+Método **GET** localhost:8080/starwars-resistance/admin/report
 ```
 {
    "percentageOfTraitors": 0.2,
@@ -206,35 +206,35 @@ Abaixo é apresentado o endpoint para deletar um rebelde. É necessário passar 
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **DELETE** localhost:8080/starwars-resistence/admin/rebel/delete/**`id`**
+Método **DELETE** localhost:8080/starwars-resistance/admin/rebel/delete/**`id`**
 
 ### Listar os rebeldes cadastrados
 Para obter a lista completa dos rebeldes basta utilizar o endpoint abaixo.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/admin/list
+Método **GET** localhost:8080/starwars-resistance/admin/list
 
 ### Listar os rebeldes cadastrados(com paginação)
 Para obter a lista dos rebeldes com paginação, basta utilizar o endpoint abaixo.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/admin
+Método **GET** localhost:8080/starwars-resistance/admin
 
 ### Obter rebelde pelo `id`
 Para obter um rebelde específico basta utilizar o endpoint abaixo, onde o **`id`** de um rebelde cadastrado deve ser passado.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/admin/rebel/find/**`id`**
+Método **GET** localhost:8080/starwars-resistance/admin/rebel/find/**`id`**
 
 ### Obter o inventário de rebelde pelo `id`
 Para obter o inventário de rebelde específico basta utilizar o endpoint abaixo, onde o **`id`** de um rebelde cadastrado deve ser passado.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `ADMIN` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/admin/rebel/**`id`**/inventory
+Método **GET** localhost:8080/starwars-resistance/admin/rebel/**`id`**/inventory
 
 ### Atualizar localização do rebelde(REBEL)
 Para atualizar a localização de um rebelde é necessário informar os novos valores para galaxyName, longitude e latitude. 
@@ -244,7 +244,7 @@ Abaixo são apresentados o endpoint e o exemplo de body para realizar a atualiza
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `REBEL` podem ter acesso a este endpoint.
 
-Método **PUT** localhost:8080/starwars-resistence/rebels/update-location
+Método **PUT** localhost:8080/starwars-resistance/rebels/update-location
 ```
 {
    "galaxyName": "Nova galáxia",
@@ -260,7 +260,7 @@ será identificado a partir dos dados no token de autenticação.
 **OBS.** O`accusedId` deve obrigatoriamente pertencer a rebelde existente, caso contrário a resposta para a requisição é `BAD_REQUEST`.
 Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `REBEL` podem ter acesso a este endpoint.
 
-Método **POST** localhost:8080/starwars-resistence/rebels/report-traitor
+Método **POST** localhost:8080/starwars-resistance/rebels/report-traitor
 ```
 {
    "accusedId": 1,
@@ -275,7 +275,7 @@ trocar itens que não possui ou que excedem a quantidade salva. Também é bloqu
 são obrigatórios e com um detalhe para a lista de itens que deve conter pelo menos **um** item e no máximo **quatro**. Abaixo é apresentado o exemplo do body para a
 requisição e a URL para negociar os itens. Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `REBEL` podem ter acesso a este endpoint.
 
-Método **POST** localhost:8080/starwars-resistence/rebels/inventory/trade
+Método **POST** localhost:8080/starwars-resistance/rebels/inventory/trade
 ```
 {
    "fromRebel": {
@@ -308,5 +308,5 @@ Um rebelde cadastrado pode obter seus dados a partir deste endpoint.
 
 **OBS.** Deverá ser enviado o token de autenticação no **header**. Somente rebeldes com role `REBEL` podem ter acesso a este endpoint.
 
-Método **GET** localhost:8080/starwars-resistence/rebels/find
+Método **GET** localhost:8080/starwars-resistance/rebels/find
 
