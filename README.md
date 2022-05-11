@@ -1,4 +1,4 @@
-# Star Wars Resistence Social Network API ![badge](https://img.shields.io/github/languages/top/willyoliv/star_wars_resistence_api_auth)
+# Star Wars Resistance Social Network API ![badge](https://img.shields.io/github/languages/top/willyoliv/star_wars_resistence_api_auth)
 
 ## Tabela de conteúdos
 <!--ts-->
