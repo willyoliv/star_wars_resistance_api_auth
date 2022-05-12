@@ -83,26 +83,30 @@ Desenvolver uma API REST, ao qual irá armazenar informação sobre os rebeldes,
 Abaixo são apresentados os passos necessários para que o projeto possa ser executado.
 
 ### Pré-requisitos
-O projeto foi criado utilizando o **`Gradle`** como gerenciador de dependências. Como pré-requisito principal é necessário que a versão do JAVA **`JDK 17`** esteja devidamente instalada em seu ambiente de desenvolvimento. Também será necessário utilizar alguma IDE para visualizar o código como por exemplo: Intellij (utilizada), Netbeans, Eclipse ou qualquer um editor de sua preferência. Além disso será necessário criar um banco **`Postgres`** com o nome **`starwars`** e editar as configurações no arquivo `application.properties`.
+O projeto foi criado utilizando o `Gradle` como gerenciador de dependências. Será necessário o uso do `Docker`. Também será necessário utilizar alguma IDE para visualizar o código como por exemplo: Intellij (utilizada), Netbeans, Eclipse ou qualquer um editor de sua preferência. 
 
 ### Rodando o projeto
+#### Clone o repositório e abre o local do projeto
 ```bash
-
 # Clone este repositório
 $ git clone https://github.com/willyoliv/star_wars_resistance_api_auth.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd star_wars_resistance_api_auth
-
-# Rode o projeto
-$ ./gradlew bootRun
-
 ```
-**OBS.** O projeto por padrão roda em `localhost:8080`, caso a mesma esteja sendo utilizada por outro serviço é necessário alterar o arquivo `application.properties` adicionando uma nova porta seguindo o exemplo abaixo.
+#### Executar o build do projeto
+```bash
+$ ./gradlew bootJar
+```
+#### Criar o build da imagem
+```bash
+$ docker build -t coders/starwars-resistance .
+```
+#### Executando os containers
+```bash
+$ docker-compose up
+```
 
-```
-server.port=8081
-```
 
 ## EndPoints
 Os endpoints estão organizados seguindo a ordem dos requisidos funcionais do projeto. A documentação pode ser acessada importando o arquivo **`StarWars API.postman_collection.json`** no Postman.
