@@ -86,7 +86,7 @@ Abaixo são apresentados os passos necessários para que o projeto possa ser exe
 O projeto foi criado utilizando o `Gradle` como gerenciador de dependências. Será necessário o uso do `Docker`. Também será necessário utilizar alguma IDE para visualizar o código como por exemplo: Intellij (utilizada), Netbeans, Eclipse ou qualquer um editor de sua preferência. 
 
 ### Rodando o projeto
-#### Clone o repositório e abre o local do projeto
+#### Clone o repositório e abra o local do projeto
 ```bash
 # Clone este repositório
 $ git clone https://github.com/willyoliv/star_wars_resistance_api_auth.git
